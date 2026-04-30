@@ -1,0 +1,127 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,#eef2f7,#e6edf5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.3s ease;
+}
+
+/* Dark mode body */
+body.dark {
+    background: linear-gradient(135deg,#1c2430,#121821);
+}
+
+/* Card */
+.container {
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 320px;
+    box-sizing: border-box;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark .container {
+    background: #1f2733;
+    color: #e8eef6;
+}
+
+/* Title */
+h1 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-weight: 600;
+    color: #3a4a5a;
+}
+
+body.dark h1 {
+    color: #cfe3ff;
+}
+
+/* Label */
+label {
+    font-size: 14px;
+    color: #5a6a78;
+}
+
+body.dark label {
+    color: #9fb3c8;
+}
+
+/* Inputs */
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #d6dde4;
+    background: #f9fbfc;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+body.dark input,
+body.dark select {
+    background: #2a3442;
+    border-color: #3d4b5f;
+    color: white;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #88b4d1;
+    box-shadow: 0 0 0 2px rgba(136,180,209,0.2);
+}
+
+/* Result animation */
+#result {
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #4a7c59;
+    min-height: 34px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.25s ease;
+}
+
+#result.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.dark #result {
+    color: #7ed7a6;
+}
+
+/* Error */
+#error {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #c06c6c;
+    min-height: 18px;
+}
+
+body.dark #error {
+    color: #ff9a9a;
+}
+
+/* Dark mode toggle button */
+.toggle {
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #6a7f95;
+    user-select: none;
+}
+
+body.dark .toggle {
+    color: #9fb3c8;
+}
