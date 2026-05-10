@@ -32,9 +32,12 @@ module.exports = [
 				'always'
 			],
 
-			brace-style: [
+			'brace-style': [
 				'error',
-				'1tbs'
+				'1tbs',
+				{ 
+					'allowSingleLine': true 
+				}
 			]
 		}
 	}
