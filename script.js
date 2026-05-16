@@ -2,14 +2,35 @@ const input = document.getElementById("input");
 const result = document.getElementById("result");
 const error = document.getElementById("error");
 const mode = document.getElementById("mode");
+let lastError = null;
+let inputTimeout = null;
 
-input.addEventListener("input", convert);
+input.addEventListener("input", handleInput);
 mode.addEventListener("change", reset);
 
 function reset() {
 	input.value = "";
 	result.textContent = "";
 	error.textContent = "";
+}
+
+// Check for moments where user is not inputting more letters in order to track
+function handleInput() {
+	convert();
+
+	clearTimeout(inputTimeout);
+
+	inputTimeout = setTimeout(() => {
+		const value = input.value.trim();
+
+		if (value === "") return;
+
+		gtag('event', 'user_input', {
+			'input_value': value,
+			'type_of_conversion': mode.value,
+			'timestamp': new Date().toISOString()
+		});
+	}, 500);
 }
 
 function convert() {
@@ -24,26 +45,43 @@ function convert() {
 		const num = Number(value);
 
 		if (!Number.isInteger(num) || num < 1 || num > 3999) {
-			error.textContent = "Enter an integer between 1 and 3999.";
+			setError("Enter an integer between 1 and 3999.");
 			return;
 		}
 
 		result.textContent = intToRoman(num);
 	} else {
 		if (!/^[IVXLCDM]+$/i.test(value)) {
-			error.textContent = "Enter a valid Roman numeral.";
+			setError("Enter a valid Roman numeral.");
 			return;
 		}
 
 		const converted = romanToInt(value.toUpperCase());
 
 		if (converted === null) {
-			error.textContent = "Invalid Roman numeral format.";
+			setError("Invalid Roman numeral format.");
 			return;
 		}
 
 		result.textContent = converted;
 	}
+}
+
+function setError(errorStr) {
+	error.textContent = errorStr;
+
+	// dont have duplicated errors
+	if (lastError === errorStr) return;
+
+	lastError = errorStr;
+
+	// tracj errors with context
+	gtag('event', 'conversion_error', {
+		'error_string': errorStr,
+		'mode': mode.value,
+		'input_value': input.value.trim(),
+		'timestamp': new Date().toISOString()
+	});
 }
 
 function intToRoman(num) {
