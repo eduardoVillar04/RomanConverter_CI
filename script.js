@@ -7,7 +7,7 @@ input.addEventListener("input", convert);
 mode.addEventListener("change", reset);
 
 function reset() {
-    input.value = "";
+	input.value = "";
 	result.textContent = "";
 	error.textContent = "";
 }
