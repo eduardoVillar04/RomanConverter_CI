@@ -25,10 +25,10 @@ function handleInput() {
 
 		if (value === "") return;
 
-		gtag('event', 'user_input', {
-			'input_value': value,
-			'type_of_conversion': mode.value,
-			'timestamp': new Date().toISOString()
+		gtag("event", "user_input", {
+			"input_value": value,
+			"type_of_conversion": mode.value,
+			"timestamp": new Date().toISOString()
 		});
 	}, 500);
 }
@@ -76,11 +76,11 @@ function setError(errorStr) {
 	lastError = errorStr;
 
 	// tracj errors with context
-	gtag('event', 'conversion_error', {
-		'error_string': errorStr,
-		'mode': mode.value,
-		'input_value': input.value.trim(),
-		'timestamp': new Date().toISOString()
+	gtag("event", "conversion_error", {
+		"error_string": errorStr,
+		"mode": mode.value,
+		"input_value": input.value.trim(),
+		"timestamp": new Date().toISOString()
 	});
 }
 
